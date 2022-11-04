@@ -18,16 +18,7 @@ export class HomeComponent implements OnInit {
   registerToggle(){
     this.registerMode = !this.registerMode
   }
-
-  // getUsers() {
-  //   this._userService.getUsers().subscribe(response => {
-  //     console.log(response)
-  //     this.users = response
-  //   },
-  //     err => {
-  //       console.log(err)
-  //     })
-  // }
+  
   cancelRegisterMode(event: boolean){
     this.registerMode = event
   }

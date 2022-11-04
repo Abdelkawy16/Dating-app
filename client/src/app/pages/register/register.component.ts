@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/providers/services/account.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(3)])
   })
 
-  constructor(private _accountService: AccountService) { }
+  constructor(private _accountService: AccountService, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +29,10 @@ export class RegisterComponent implements OnInit {
           console.log(response);
           this.cancel();
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+          this._toastr.error(err.error, "Error!");
+        }
       )
     }
   }

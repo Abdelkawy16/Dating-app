@@ -1,7 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListsComponent } from './pages/lists/lists.component';
+import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
+import { MemberListComponent } from './pages/members/member-list/member-list.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './providers/guards/auth.guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  {path:"", runGuardsAndResolvers:"always", canActivate:[AuthGuard], children:[
+    { path: "members", component: MemberListComponent },
+    { path: "memebers/:id", component: MemberDetailComponent },
+    { path: "lists", component: ListsComponent },
+    { path: "messages", component: MessagesComponent },
+  ]},
+  { path: "**", component: HomeComponent, pathMatch: "full"},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
