@@ -30,7 +30,7 @@ namespace API.Controllers
             var user = new AppUser(){
                 UserName = _user.Username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(_user.Password)),
-                PasswordSaalt = hmac.Key
+                PasswordSalt = hmac.Key
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -47,7 +47,7 @@ namespace API.Controllers
 
             if(user == null) return Unauthorized("Invalid username");
 
-            using var hmac = new HMACSHA512(user.PasswordSaalt);
+            using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(_user.Password));
             for (int i = 0; i < computedHash.Length; i++)
             {
