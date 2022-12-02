@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/providers/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,7 @@ import { UserService } from 'src/app/providers/services/user.service';
 export class HomeComponent implements OnInit {
   registerMode = false;
 
-  constructor(private _userService: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

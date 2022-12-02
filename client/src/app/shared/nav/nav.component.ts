@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { User } from 'src/models/user';
+import { User } from 'src/app/models/user';
 import { AccountService } from '../../providers/services/account.service';
 
 @Component({
