@@ -8,14 +8,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavComponent } from './shared/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MemberListComponent } from './pages/members/member-list/member-list.component';
 import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './modules/shared.module';
 import { TestErrorsComponent } from './pages/errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './providers/interceptors/error.interceptor';
@@ -24,6 +22,7 @@ import { ServerErrorComponent } from './pages/errors/server-error/server-error.c
 import { MemberCardComponent } from './pages/members/member-card/member-card.component';
 import { JwtInterceptor } from './providers/interceptors/jwt.interceptor';
 import { MemberEditComponent } from './pages/members/member-edit/member-edit.component';
+import { LoadingInterceptor } from './providers/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,8 @@ import { MemberEditComponent } from './pages/members/member-edit/member-edit.com
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
