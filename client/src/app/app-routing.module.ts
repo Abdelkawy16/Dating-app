@@ -9,12 +9,15 @@ import { AuthGuard } from './providers/guards/auth.guard';
 import { TestErrorsComponent } from './pages/errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './pages/errors/server-error/server-error.component';
+import { MemberEditComponent } from './pages/members/member-edit/member-edit.component';
+import { PreventUnsavedChangesGuard } from './providers/guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   {path:"", runGuardsAndResolvers:"always", canActivate:[AuthGuard], children:[
     { path: "members", component: MemberListComponent },
     { path: "members/:username", component: MemberDetailComponent },
+    { path: "member/edit", component: MemberEditComponent, canDeactivate:[PreventUnsavedChangesGuard] },
     { path: "lists", component: ListsComponent },
     { path: "messages", component: MessagesComponent },
   ]},
